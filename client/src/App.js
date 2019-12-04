@@ -19,23 +19,15 @@ import SearchBar from './Components/SearchBar';
 import Panel from './Components/Panel';
 import Snackbar from '@material-ui/core/Snackbar';
 import SnackBarContentWrapper from './Components/SnackBarContentWrapper'
-
+import TemperatureGraph from './Components/TemperatureGraph';
 
 const useStyles = makeStyles(theme => ({
   theme: {
     backgroundImage: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
     color: '#ffffff'
   },
-  card: {
-    maxWidth: '345',
-    textAlign: 'left'
-  },
-  whiteText: {
-    color: '#ffffff'
-  },
   root: {
     flexGrow: 1,
-    backgroundColor: '#f7f7f7',
     height: '100vh',
     width: '100vw'
   },
@@ -43,7 +35,10 @@ const useStyles = makeStyles(theme => ({
     marginRight: theme.spacing(2),
   },
   title: {
-    flexGrow: 1,
+    display: 'none',
+    [theme.breakpoints.up('sm')]: {
+      display: 'block',
+    },
   },
   subtitle: {
     marginBottom: '20px',
@@ -65,6 +60,9 @@ const useStyles = makeStyles(theme => ({
   loader: {
     display: 'block',
     margin: 'auto'
+  },
+  grow: {
+    flexGrow: 1,
   }
 }));
 
@@ -76,10 +74,6 @@ const ColorLinearProgress = withStyles({
     backgroundColor: '#764ba2',
   },
 })(LinearProgress);
-
-const callApi = async () => {
-  
-}
 
 export default function App() {
 
@@ -98,11 +92,10 @@ export default function App() {
 
   const classes = useStyles();
   const open = Boolean(anchorEl);
-  const testText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce porttitor non ipsum et feugiat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis imperdiet nisl sed metus accumsan commodo. Maecenas urna orci, placerat ut lobortis eu, facilisis nec augue. Etiam eu odio quis ex luctus imperdiet sed eget mi. Fusce volutpat vel libero nec dapibus. In hac habitasse platea dictumst."
 
   useEffect(() => {
     updateLoaded(false)
-    axios.get(`/api/hello/${lat},${lng}`)
+    axios.get(`/api/forecast/${lat},${lng}`)
       .then(res => {
         updateForecast(res.data)
       })
@@ -123,7 +116,7 @@ export default function App() {
     if (!search) {
       handleSnackOpen('error', 'Invalid search, please try again.')
     } else {
-      axios.get(`https://public.opendatasoft.com/api/records/1.0/search/?dataset=us-zip-code-latitude-and-longitude&q=${search}`)
+      axios.get(`/api/zip/${search}`)
       .then(response => {
         var data = response.data
 
@@ -162,7 +155,7 @@ export default function App() {
   if (!loaded) {
     return(
       <div className={classes.root}>
-      <AppBar className={classes.theme} position="static">
+        <AppBar className={classes.theme} position="static">
           <Toolbar>
             <Typography className={classes.title} variant="h6">
               {appName}
@@ -175,42 +168,44 @@ export default function App() {
   } else {
     return (
       <div className={classes.root}>
-  
-      <AppBar className={classes.theme} position="static">
-          <Toolbar>
-            <Typography className={classes.title} variant="h6">
-              {appName}
-            </Typography>
-            <SearchBar searchListener={searchCallback} />
-            <IconButton
-              edge="end"
-              aria-label="display more actions"
-              aria-haspopup="true"
-              onClick={handleMenuClick}
-              color="inherit"
-            >
-              <MoreIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorEl}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={open}
-              onClose={handleClose}
-            >
-              <MenuItem onClick={handleClose}>Metric</MenuItem>
-              <MenuItem onClick={handleClose}>Imperial</MenuItem>
-            </Menu>
-          </Toolbar>
-        </AppBar>
+
+        <AppBar className={classes.theme} position="static">
+            <Toolbar>
+              <Typography className={classes.title} variant="h6">
+                {appName}
+              </Typography>
+              <SearchBar searchListener={searchCallback} />
+              <div className={classes.grow} />
+              <IconButton
+                edge="end"
+                aria-label="display more actions"
+                aria-haspopup="true"
+                onClick={handleMenuClick}
+                color="inherit"
+              >
+                <MoreIcon />
+              </IconButton>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={open}
+                onClose={handleClose}
+              >
+                <MenuItem onClick={handleClose}>Metric</MenuItem>
+                <MenuItem onClick={handleClose}>Imperial</MenuItem>
+              </Menu>
+            </Toolbar>
+          </AppBar>
+
         <Container className={classes.padded} maxWidth="lg">
           <Grid container direction='row' spacing={2}>
 
@@ -248,7 +243,7 @@ export default function App() {
   
               </Grid>
             </Grid>
-            <Grid item md={8}>
+            <Grid item xs={12} md={8}>
 
               <Grid container direction='column' spacing={2}>
 
@@ -257,17 +252,7 @@ export default function App() {
                 </Grid>
 
                 <Grid item>
-                  <Grid container direction='row' spacing={2}>
-
-                    <Grid item md={6}>
-                      <Panel data={testText} icon='help' variant='text' title="Information" />
-                    </Grid>
-
-                    <Grid item md={6}>
-                      <Panel data={testText} icon='help' variant='text' title="Information" />
-                    </Grid>
-
-                  </Grid>
+                  <TemperatureGraph title="7 Day Temperature Graph" daily={forecast.daily} />
                 </Grid>
 
               </Grid>
