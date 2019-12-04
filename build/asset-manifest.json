@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/weatherhub/static/css/main.ef384612.chunk.css",
+    "main.js": "/weatherhub/static/js/main.fb14a64a.chunk.js",
+    "main.js.map": "/weatherhub/static/js/main.fb14a64a.chunk.js.map",
+    "runtime-main.js": "/weatherhub/static/js/runtime-main.36fc3f17.js",
+    "runtime-main.js.map": "/weatherhub/static/js/runtime-main.36fc3f17.js.map",
+    "static/js/2.6e02ef3d.chunk.js": "/weatherhub/static/js/2.6e02ef3d.chunk.js",
+    "static/js/2.6e02ef3d.chunk.js.map": "/weatherhub/static/js/2.6e02ef3d.chunk.js.map",
+    "index.html": "/weatherhub/index.html",
+    "precache-manifest.42b1ec1aab92253b05af33fc1522e95c.js": "/weatherhub/precache-manifest.42b1ec1aab92253b05af33fc1522e95c.js",
+    "service-worker.js": "/weatherhub/service-worker.js",
+    "static/css/main.ef384612.chunk.css.map": "/weatherhub/static/css/main.ef384612.chunk.css.map"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.36fc3f17.js",
+    "static/js/2.6e02ef3d.chunk.js",
+    "static/css/main.ef384612.chunk.css",
+    "static/js/main.fb14a64a.chunk.js"
+  ]
+}
