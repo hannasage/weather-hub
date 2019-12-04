@@ -24,13 +24,11 @@ function ForecastListItem(props) {
         <div key={props.day.time}>
             <Grid container direction='column' alignItems='flex-start' style={{padding: '8px'}}>
                 <Grid item>
-                    <Grid container direction='row' justify="center" spacing={2}>
+                    <Grid container direction='row' alignItems='flex-start' justify="center" spacing={2}>
                         <Grid item>
                             {Icon(props.day.icon)}
-                        </Grid>
-                        <Grid item>
                             <Typography variant='body1'>
-                                {props.day.temperatureLow} / {props.day.temperatureHigh}
+                                {Math.round(props.day.temperatureLow)}° / {Math.round(props.day.temperatureHigh)}°
                             </Typography>
                         </Grid>
                     </Grid>

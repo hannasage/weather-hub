@@ -32,7 +32,7 @@ function LiveTemperature(props) {
                     <Typography style={{fontSize: '35px'}} variant='body1'>
                         {
                             props.currently != undefined ? 
-                            props.currently.temperature : null
+                            Math.round(props.currently.temperature) + "°": null
                         }
                     </Typography>
                 </Grid>

@@ -100,18 +100,6 @@ export default function App() {
   const open = Boolean(anchorEl);
   const testText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce porttitor non ipsum et feugiat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis imperdiet nisl sed metus accumsan commodo. Maecenas urna orci, placerat ut lobortis eu, facilisis nec augue. Etiam eu odio quis ex luctus imperdiet sed eget mi. Fusce volutpat vel libero nec dapibus. In hac habitasse platea dictumst."
 
-  // useEffect(() => {
-  //   updateLoaded(false)
-  //   axios.get(`https://api.darksky.net/forecast/09b2001e4b878941580a9e3460cb83e4/${lat},${lng}`)
-  //   .then(response => {
-  //     updateForecast(response.data)
-  //     console.log("Forecast: Got it!  ===  " + response.data)
-  //   })
-  //   .catch(error => {
-  //     console.log("Error getting Forecast: " + error)
-  //   })
-  // }, [lat, lng])
-
   useEffect(() => {
     updateLoaded(false)
     axios.get(`/api/hello/${lat},${lng}`)

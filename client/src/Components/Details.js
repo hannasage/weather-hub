@@ -12,13 +12,13 @@ function Details(props) {
                     {props.currently.summary}
                 </Typography>
                 <Typography style={{textAlign: 'left'}} variant='body1'> 
-                    Feels like {props.currently.apparentTemperature}
+                    Feels like {Math.round(props.currently.apparentTemperature)}°
                 </Typography>
                 <Typography style={{textAlign: 'left'}} variant='body1'> 
-                    {props.currently.humidity * 100}% Humidity
+                    {Math.round(props.currently.humidity * 100)}% Humidity
                 </Typography>
                 <Typography style={{textAlign: 'left'}} variant='body1'> 
-                    {props.currently.precipProbability * 100}% Chance of Percipitation
+                    {Math.round(props.currently.precipProbability * 100)}% Chance of Percipitation
                 </Typography>
                 <Typography style={{textAlign: 'left'}} variant='body1'> 
                     Winds are blowing at {props.currently.windSpeed} mph
