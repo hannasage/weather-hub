@@ -1,7 +1,6 @@
 {
   "name": "sb-test-2",
   "version": "0.1.0",
-  "homepage": "https://kevinhaube.github.io/weatherhub",
   "private": true,
   "proxy": "http://localhost:5000/",
   "dependencies": {
