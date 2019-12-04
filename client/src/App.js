@@ -80,8 +80,8 @@ export default function App() {
   const [appName, changeAppName] = useState('WeatherHub')
   const [city, updateCity] = useState('Sykesville, MD')
   const [forecast, updateForecast] = useState({})
-  const [lat, updateLat] = useState(36.9956066)
-  const [lng, updateLng] = useState(-91.0145714)
+  const [lat, updateLat] = useState(39.39667)
+  const [lng, updateLng] = useState(-76.965)
   const [loaded, updateLoaded] = useState(false)
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -180,7 +180,7 @@ export default function App() {
                 edge="end"
                 aria-label="display more actions"
                 aria-haspopup="true"
-                onClick={handleMenuClick}
+                onClick={handleClick}
                 color="inherit"
               >
                 <MoreIcon />
@@ -200,8 +200,8 @@ export default function App() {
                 open={open}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose}>Metric</MenuItem>
-                <MenuItem onClick={handleClose}>Imperial</MenuItem>
+                <MenuItem onClick={handleMenuClick}>Metric</MenuItem>
+                <MenuItem onClick={handleMenuClick}>Imperial</MenuItem>
               </Menu>
             </Toolbar>
           </AppBar>
