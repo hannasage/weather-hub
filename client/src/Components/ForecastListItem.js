@@ -27,7 +27,7 @@ function ForecastListItem(props) {
                     <Grid container direction='row' alignItems='flex-start' justify="center" spacing={2}>
                         <Grid item>
                             {Icon(props.day.icon)}
-                            <Typography variant='body1'>
+                            <Typography variant='body1' noWrap>
                                 {Math.round(props.day.temperatureLow)}° / {Math.round(props.day.temperatureHigh)}°
                             </Typography>
                         </Grid>
